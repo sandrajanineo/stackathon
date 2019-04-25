@@ -7,7 +7,7 @@ import {
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import UploadForm from '../screens/UploadForm';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProductsView from '../screens/ProductsView';
 import Tops from '../components/Tops';
@@ -53,12 +53,12 @@ ProductsViewStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const UploadFormStack = createStackNavigator({
+  UploadForm: UploadForm,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+UploadFormStack.navigationOptions = {
+  tabBarLabel: 'Upload Items',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -84,6 +84,6 @@ SettingsStack.navigationOptions = {
 export default createBottomTabNavigator({
   HomeStack,
   ProductsViewStack,
-  LinksStack,
+  UploadFormStack,
   SettingsStack,
 });
