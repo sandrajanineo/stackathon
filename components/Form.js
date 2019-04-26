@@ -29,7 +29,7 @@ export default class Form extends React.Component {
   clickButton() {
     console.log('state is now ', this.state);
     console.log('button clicked!');
-    //do i add the item to the closet from here?
+    console.log('tops are', tops);
   }
 
   render() {

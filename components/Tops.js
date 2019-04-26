@@ -10,65 +10,21 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { MonoText } from './StyledText';
-
-let tops = [
-  {
-    id: 1,
-    imageUrl: 'https://www.gap.com/webcontent/0013/463/897/cn13463897.jpg',
-    occassion: 'casual',
-    season: 'fall',
-    color: 'blue',
-    category: {
-      body: 'top',
-      type: 't-shirt',
-    },
-  },
-  {
-    id: 2,
-    imageUrl:
-      'http://www.streetgaga.com/image/catalog/Sweaters/Cardigan-Sweaters/long-sleeve-chunky-knit-pockets-pink-cardigan-13532_0.jpg',
-    occassion: 'casual',
-    season: 'winter',
-    color: 'pink',
-    category: {
-      body: 'top',
-      type: 'sweater',
-    },
-  },
-  {
-    id: 3,
-    imageUrl:
-      'https://images.express.com/is/image/expressfashion/0097_09704455_0528?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon',
-    occassion: 'formal',
-    season: 'fall',
-    color: 'red',
-    category: {
-      body: 'top',
-      type: 'collared',
-    },
-  },
-];
+import { connect } from 'react-redux';
 
 export default class Tops extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      items: tops,
-    };
-  }
-
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
-          {this.state.items.map(item => {
+          {this.props.tops.map(top => {
             return (
-              <View style={styles.welcomeContainer} key={item.id}>
+              <View style={styles.welcomeContainer} key={top.id}>
                 <Image
-                  source={{ uri: item.imageUrl }}
+                  source={{ uri: top.imageUrl }}
                   style={styles.welcomeImage}
                 />
-                <Text style={styles.getStartedText}>{item.occassion}</Text>
+                <Text style={styles.getStartedText}>{top.occassion}</Text>
               </View>
             );
           })}
@@ -77,6 +33,10 @@ export default class Tops extends React.Component {
     );
   }
 }
+
+const mapState = state => ({
+  tops: state.tops,
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -166,3 +126,8 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+// export default connect(
+//   mapState,
+//   null
+// )(Tops);
