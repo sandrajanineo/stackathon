@@ -26,10 +26,11 @@
 
 import * as firebase from 'firebase';
 
-let Firebase = firebase.initializeApp({
+firebase.initializeApp({
   apiKey: 'AIzaSyBWraWn6i8CN1iCybjo4RWa-kcReB_YEaA',
   authDomain: 'personallyme-926de.firebaseapp.com',
   databaseURL: 'https://personallyme-926de.firebaseio.com',
+  projectId: '',
   storageBucket: 'personallyme-926de.appspot.com',
 });
 
