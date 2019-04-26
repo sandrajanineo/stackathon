@@ -9,24 +9,87 @@ import {
   View,
   TextInput,
   Keyboard,
+  Picker,
 } from 'react-native';
+import { withOrientation } from 'react-navigation';
 
 export default class Form extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      occassion: '',
+      color: '',
+      season: '',
+      category: '',
+    };
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <Text>Upload Item Here:</Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Occassion"
-            onBlur={Keyboard.dismiss}
-          />
-        </ScrollView>
-      </View>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
+      >
+        <View style={styles.container}>
+          <Text style={styles.formText}>Select the type of occassion:</Text>
+          <Picker
+            selectedValue={this.state.occassion}
+            style={styles.formOptions}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ occassion: itemValue });
+            }}
+          >
+            <Picker.Item label="Formal" value="formal" />
+            <Picker.Item label="Casual" value="casual" />
+            <Picker.Item label="Sporty" value="sporty" />
+            <Picker.Item label="Business" value="business" />
+            <Picker.Item label="Night Out" value="nightOut" />
+          </Picker>
+          <Text style={styles.formText}>Select the color:</Text>
+          <Picker
+            selectedValue={this.state.color}
+            style={styles.formOptions}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ color: itemValue });
+            }}
+          >
+            <Picker.Item label="Red" value="red" />
+            <Picker.Item label="Blue" value="Blue" />
+            <Picker.Item label="Yellow" value="yellow" />
+            <Picker.Item label="White" value="White" />
+            <Picker.Item label="Violet" value="violet" />
+            <Picker.Item label="Pink" value="orange" />
+            <Picker.Item label="Orange" value="orange" />
+            <Picker.Item label="Black" value="black" />
+            <Picker.Item label="Green" value="Green" />
+          </Picker>
+          <Text style={styles.formText}>Select the appropriate season:</Text>
+          <Picker
+            selectedValue={this.state.season}
+            style={styles.formOptions}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ season: itemValue });
+            }}
+          >
+            <Picker.Item label="Fall" value="fall" />
+            <Picker.Item label="Winter" value="winter" />
+            <Picker.Item label="Spring" value="spring" />
+            <Picker.Item label="Summer" value="summer" />
+          </Picker>
+
+          <Text style={styles.formText}>Select the item type:</Text>
+          <Picker
+            selectedValue={this.state.category}
+            style={styles.formOptions}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ category: itemValue });
+            }}
+          >
+            <Picker.Item label="Top" value="top" />
+            <Picker.Item label="Bottom" value="bottom" />
+            <Picker.Item label="Full Body" value="fullBody" />
+          </Picker>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -45,6 +108,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 30,
+    paddingBottom: 30,
   },
   welcomeContainer: {
     alignItems: 'center',
@@ -73,11 +137,12 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     paddingHorizontal: 4,
   },
-  getStartedText: {
-    fontSize: 25,
+  formText: {
+    fontSize: 15,
     color: 'white',
     lineHeight: 24,
     textAlign: 'center',
+    paddingBottom: 10,
   },
   tabBarInfoContainer: {
     position: 'absolute',
@@ -129,5 +194,14 @@ const styles = StyleSheet.create({
     fontSize: 25,
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  formOptions: {
+    height: 150,
+    width: 100,
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
+    paddingTop: 30,
+    paddingBottom: 30,
+    alignSelf: 'center',
   },
 });

@@ -49,17 +49,6 @@ export default class HomeScreen extends React.Component {
               Tell me what you need and I will build an outfit for you!
             </Text>
           </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity
-              onPress={this._handleHelpPress}
-              style={styles.helpLink}
-            >
-              <Text style={styles.helpLinkText}>
-                Help, it didn’t automatically reload!
-              </Text>
-            </TouchableOpacity>
-          </View>
         </ScrollView>
       </View>
     );
