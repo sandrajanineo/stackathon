@@ -10,19 +10,28 @@ import {
   TextInput,
   Keyboard,
   Picker,
+  Button,
 } from 'react-native';
-import { withOrientation } from 'react-navigation';
 
 export default class Form extends React.Component {
   constructor() {
     super();
     this.state = {
+      imageUrl: '',
       occassion: '',
       color: '',
       season: '',
       category: '',
     };
+    this.clickButton = this.clickButton.bind(this);
   }
+
+  clickButton() {
+    console.log('state is now ', this.state);
+    console.log('button clicked!');
+    //do i add the item to the closet from here?
+  }
+
   render() {
     return (
       <ScrollView
@@ -30,7 +39,19 @@ export default class Form extends React.Component {
         contentContainerStyle={styles.contentContainer}
       >
         <View style={styles.container}>
-          <Text style={styles.formText}>Select the type of occassion:</Text>
+          <TextInput
+            style={{
+              height: 40,
+              width: '70%',
+              borderColor: 'white',
+              borderWidth: 2,
+              alignSelf: 'center',
+            }}
+            onChangeText={text => this.setState({ imageUrl: text })}
+            value={this.state.imageUrl}
+            placeholder={'Enter image URL:'}
+          />
+
           <Picker
             selectedValue={this.state.occassion}
             style={styles.formOptions}
@@ -38,13 +59,14 @@ export default class Form extends React.Component {
               this.setState({ occassion: itemValue });
             }}
           >
+            <Picker.Item label="Select the type of occassion:" value="" />
             <Picker.Item label="Formal" value="formal" />
             <Picker.Item label="Casual" value="casual" />
             <Picker.Item label="Sporty" value="sporty" />
             <Picker.Item label="Business" value="business" />
             <Picker.Item label="Night Out" value="nightOut" />
           </Picker>
-          <Text style={styles.formText}>Select the color:</Text>
+
           <Picker
             selectedValue={this.state.color}
             style={styles.formOptions}
@@ -52,6 +74,7 @@ export default class Form extends React.Component {
               this.setState({ color: itemValue });
             }}
           >
+            <Picker.Item label="Select the color:" value="" />
             <Picker.Item label="Red" value="red" />
             <Picker.Item label="Blue" value="Blue" />
             <Picker.Item label="Yellow" value="yellow" />
@@ -62,7 +85,7 @@ export default class Form extends React.Component {
             <Picker.Item label="Black" value="black" />
             <Picker.Item label="Green" value="Green" />
           </Picker>
-          <Text style={styles.formText}>Select the appropriate season:</Text>
+
           <Picker
             selectedValue={this.state.season}
             style={styles.formOptions}
@@ -70,13 +93,13 @@ export default class Form extends React.Component {
               this.setState({ season: itemValue });
             }}
           >
+            <Picker.Item label="Select the season:" value="" />
             <Picker.Item label="Fall" value="fall" />
             <Picker.Item label="Winter" value="winter" />
             <Picker.Item label="Spring" value="spring" />
             <Picker.Item label="Summer" value="summer" />
           </Picker>
 
-          <Text style={styles.formText}>Select the item type:</Text>
           <Picker
             selectedValue={this.state.category}
             style={styles.formOptions}
@@ -84,10 +107,17 @@ export default class Form extends React.Component {
               this.setState({ category: itemValue });
             }}
           >
+            <Picker.Item label="Select the item type:" value="" />
             <Picker.Item label="Top" value="top" />
             <Picker.Item label="Bottom" value="bottom" />
             <Picker.Item label="Full Body" value="fullBody" />
           </Picker>
+
+          <Button
+            style={styles.button}
+            title="Add to Closet"
+            onPress={this.clickButton}
+          />
         </View>
       </ScrollView>
     );
@@ -140,6 +170,7 @@ const styles = StyleSheet.create({
   formText: {
     fontSize: 15,
     color: 'white',
+    borderColor: 'white',
     lineHeight: 24,
     textAlign: 'center',
     paddingBottom: 10,
@@ -196,12 +227,20 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   formOptions: {
-    height: 150,
-    width: 100,
+    height: 200,
+    width: '70%',
+    paddingTop: 60,
+    paddingBottom: 60,
+    alignSelf: 'center',
+  },
+  form: {
+    alignSelf: 'center',
     borderWidth: 1,
     borderColor: '#FFFFFF',
-    paddingTop: 30,
-    paddingBottom: 30,
-    alignSelf: 'center',
+  },
+  button: {
+    paddingTop: 60,
+    paddingBottom: 60,
+    color: '#00ffff',
   },
 });

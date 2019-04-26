@@ -4,18 +4,36 @@ import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import firebase from 'firebase';
 
-firebase.initializeApp({
-  apiKey: 'AIzaSyBWraWn6i8CN1iCybjo4RWa-kcReB_YEaA',
-  authDomain: 'personallyme-926de.firebaseapp.com',
-  databaseURL: 'https://personallyme-926de.firebaseio.com',
-  projectId: 'personallyme-926de',
-  storageBucket: 'personallyme-926de.appspot.com',
-});
-
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   };
+
+  componentWillMount() {
+    const config = {
+      apiKey: 'AIzaSyBWraWn6i8CN1iCybjo4RWa-kcReB_YEaA',
+      authDomain: 'personallyme-926de.firebaseapp.com',
+      databaseURL: 'https://personallyme-926de.firebaseio.com',
+      projectId: 'personallyme-926de',
+      storageBucket: 'personallyme-926de.appspot.com',
+      messagingSenderId: '620806870',
+    };
+    firebase.initializeApp(config);
+
+    // firebase
+    //   .database()
+    //   .ref('users')
+    //   .set({
+    //     name: 'Sandra',
+    //     age: 29,
+    //   })
+    //   .then(() => {
+    //     console.log('successful!');
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+  }
 
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
