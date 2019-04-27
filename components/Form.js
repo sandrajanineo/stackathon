@@ -11,6 +11,7 @@ import {
   Keyboard,
   Picker,
   Button,
+  Alert,
 } from 'react-native';
 import { ImagePicker, Permissions } from 'expo';
 import * as firebase from 'firebase';
@@ -38,6 +39,16 @@ export default class Form extends React.Component {
       .then(function(docRef) {
         console.log('successfully added item!');
       });
+
+    this.setState({
+      image: null,
+      occassion: '',
+      color: '',
+      season: '',
+      category: '',
+    });
+
+    Alert.alert('Item Added Successfully!');
   }
 
   showAlert() {
@@ -79,7 +90,6 @@ export default class Form extends React.Component {
   };
 
   render() {
-    let { image } = this.state;
     return (
       <ScrollView
         style={styles.container}
@@ -93,9 +103,9 @@ export default class Form extends React.Component {
             title="Pick an image from camera roll"
             onPress={this.pickImage}
           />
-          {image && (
+          {this.state.image && (
             <Image
-              source={{ uri: image }}
+              source={{ uri: this.state.image }}
               style={{
                 width: 200,
                 height: 200,

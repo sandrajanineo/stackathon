@@ -26,8 +26,6 @@ export default class Bottoms extends React.Component {
   getBottoms(querySnapShot) {
     let bottoms = [];
     querySnapShot.forEach(doc => {
-      // let item = doc.data();
-      // console.log('item is!!! ', item);
       bottoms.push(doc.data());
     });
     this.setState({
