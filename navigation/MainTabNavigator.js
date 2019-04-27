@@ -58,7 +58,7 @@ const UploadFormStack = createStackNavigator({
 });
 
 UploadFormStack.navigationOptions = {
-  tabBarLabel: 'Upload Items',
+  tabBarLabel: 'Add to Collection!',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

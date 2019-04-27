@@ -38,22 +38,6 @@ export default class Form extends React.Component {
       .then(function(docRef) {
         console.log('successfully added item!');
       });
-
-    // let newItem = firebase.database().ref(`${this.state.category}`);
-
-    // newItem
-    //   .push(this.state)
-    //   .then(() => {
-    //     console.log('successful!');
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
-
-    // //retrieve list of items after adding a new item
-    // let items = newItem.on('value', function(snapshot) {
-    //   console.log('items: ', snapshot.val());
-    // });
   }
 
   showAlert() {

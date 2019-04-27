@@ -8,9 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-import { MonoText } from './StyledText';
-// import { tops } from './store/closetInventory';
+
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -29,9 +27,7 @@ export default class Tops extends React.Component {
   getTops(querySnapShot) {
     let tops = [];
     querySnapShot.forEach(doc => {
-      let item = doc.data();
-      console.log('item is!!! ', item);
-      tops.push(item);
+      tops.push(doc.data());
     });
     this.setState({
       isLoading: false,

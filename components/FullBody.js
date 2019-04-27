@@ -8,64 +8,45 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-import { MonoText } from './StyledText';
-
-let fullbody = [
-  {
-    id: 1,
-    imageUrl: 'https://www.gap.com/webcontent/0013/463/897/cn13463897.jpg',
-    occassion: 'casual',
-    season: 'fall',
-    color: 'blue',
-    category: {
-      body: 'top',
-      type: 't-shirt',
-    },
-  },
-  {
-    id: 2,
-    imageUrl:
-      'http://www.streetgaga.com/image/catalog/Sweaters/Cardigan-Sweaters/long-sleeve-chunky-knit-pockets-pink-cardigan-13532_0.jpg',
-    occassion: 'casual',
-    season: 'winter',
-    color: 'pink',
-    category: {
-      body: 'top',
-      type: 'sweater',
-    },
-  },
-  {
-    id: 3,
-    imageUrl:
-      'https://images.express.com/is/image/expressfashion/0097_09704455_0528?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon',
-    occassion: 'formal',
-    season: 'fall',
-    color: 'red',
-    category: {
-      body: 'top',
-      type: 'collared',
-    },
-  },
-];
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 export default class FullBody extends React.Component {
   constructor() {
     super();
+    this.ref = firebase.firestore().collection('fullbody');
+    this.unsubscribe = null;
     this.state = {
-      items: fullbody,
+      isLoading: true,
+      fullbody: [],
     };
+    this.getFullbody = this.getFullbody.bind(this);
+  }
+
+  getFullbody(querySnapShot) {
+    let fullbody = [];
+    querySnapShot.forEach(doc => {
+      fullbody.push(doc.data());
+    });
+    this.setState({
+      isLoading: false,
+      fullbody,
+    });
+  }
+
+  componentDidMount() {
+    this.unsubscribe = this.ref.onSnapshot(this.getFullbody);
   }
 
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
-          {this.state.items.map(item => {
+          {this.state.fullbody.map((item, i) => {
             return (
-              <View style={styles.welcomeContainer} key={item.id}>
+              <View style={styles.welcomeContainer} key={i}>
                 <Image
-                  source={{ uri: item.imageUrl }}
+                  source={{ uri: item.image }}
                   style={styles.welcomeImage}
                 />
                 <Text style={styles.getStartedText}>{item.occassion}</Text>
@@ -76,41 +57,6 @@ export default class FullBody extends React.Component {
       </ScrollView>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use
-          useful development tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/development-mode'
-    );
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
 
 const styles = StyleSheet.create({
