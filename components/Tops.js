@@ -11,44 +11,45 @@ import {
 import { WebBrowser } from 'expo';
 import { MonoText } from './StyledText';
 // import { tops } from './store/closetInventory';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 export default class Tops extends React.Component {
   constructor() {
     super();
-    this.ref = firebase.database().ref('tops');
+    this.ref = firebase.firestore().collection('tops');
     this.unsubscribe = null;
     this.state = {
       isLoading: true,
       tops: [],
     };
+    this.getTops = this.getTops.bind(this);
   }
 
-  // getTops(querySnapShot) {
-  //   let tops = [];
-  //   querySnapShot.forEach(doc => {
-  //     let array = Object.values(doc.value());
-  //     tops.push(array);
-  //   });
-  //   this.setState({
-  //     isLoading: false,
-  //     tops,
-  //   });
-  // }
+  getTops(querySnapShot) {
+    let tops = [];
+    querySnapShot.forEach(doc => {
+      let item = doc.data();
+      console.log('item is!!! ', item);
+      tops.push(item);
+    });
+    this.setState({
+      isLoading: false,
+      tops,
+    });
+  }
 
-  // componentDidMount() {
-  //   this.unsubscribe = this.ref.on('value', function(snapshot) {
-  //     this.getTops(snapshot);
-  //   });
-  // }
+  componentDidMount() {
+    this.unsubscribe = this.ref.onSnapshot(this.getTops);
+  }
 
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
-          {this.state.tops.map(top => {
+          {this.state.tops.map((top, i) => {
             return (
-              <View style={styles.welcomeContainer} key={top.id}>
+              <View style={styles.welcomeContainer} key={i}>
                 <Image
                   source={{ uri: top.image }}
                   style={styles.welcomeImage}

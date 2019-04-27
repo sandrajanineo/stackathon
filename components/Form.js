@@ -32,11 +32,11 @@ export default class Form extends React.Component {
   addItem() {
     console.log('state is now ', this.state);
     console.log('button clicked!');
-    var db = firebase.firestore();
+    const db = firebase.firestore();
     db.collection(`${this.state.category}`)
       .add(this.state)
       .then(function(docRef) {
-        console.log('doc ref is ', docRef.id);
+        console.log('successfully added item!');
       });
 
     // let newItem = firebase.database().ref(`${this.state.category}`);
@@ -149,7 +149,7 @@ export default class Form extends React.Component {
             <Picker.Item label="Yellow" value="yellow" />
             <Picker.Item label="White" value="White" />
             <Picker.Item label="Violet" value="violet" />
-            <Picker.Item label="Pink" value="orange" />
+            <Picker.Item label="Pink" value="pink" />
             <Picker.Item label="Orange" value="orange" />
             <Picker.Item label="Black" value="black" />
             <Picker.Item label="Green" value="Green" />
