@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { MonoText } from './StyledText';
-import { tops } from '../store/closetInventory';
+import { tops } from './store/closetInventory';
 
 export default class Tops extends React.Component {
   render() {

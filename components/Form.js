@@ -12,44 +12,93 @@ import {
   Picker,
   Button,
 } from 'react-native';
+import { ImagePicker, Permissions } from 'expo';
 
 export default class Form extends React.Component {
   constructor() {
     super();
     this.state = {
-      imageUrl: '',
+      imageUrl: null,
       occassion: '',
       color: '',
       season: '',
       category: '',
     };
-    this.clickButton = this.clickButton.bind(this);
+    this.addItem = this.addItem.bind(this);
   }
 
-  clickButton() {
+  addItem() {
     console.log('state is now ', this.state);
     console.log('button clicked!');
+    let newItem = this.state;
+    console.log('new item is ', newItem);
   }
 
+  showAlert() {
+    Alert.alert(
+      'Please Allow Access',
+      [
+        'This applicaton needs access to your photo library to upload images.',
+        '\n\n',
+        'Please go to Settings of your device and grant permissions to Photos.',
+      ].join(''),
+      [
+        { text: 'Not Now', style: 'cancel' },
+        { text: 'Settings', onPress: () => Linking.openURL('app-settings:') },
+      ]
+    );
+  }
+
+  pickImage = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (status !== 'granted') {
+      if (Platform.OS === 'ios') this.showAlert();
+      return;
+    }
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      type: 'images',
+      allowsEditing: true,
+      aspect: [4, 3],
+      base64: true,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      this.setState({ image: result.uri });
+    } else {
+      this.setState({ image: null });
+    }
+  };
+
   render() {
+    let { image } = this.state;
     return (
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
         <View style={styles.container}>
-          <TextInput
-            style={{
-              height: 40,
-              width: '70%',
-              borderColor: 'white',
-              borderWidth: 2,
-              alignSelf: 'center',
-            }}
-            onChangeText={text => this.setState({ imageUrl: text })}
-            value={this.state.imageUrl}
-            placeholder={'Enter image URL:'}
+          <Text style={styles.headerText}>Add To Your Collection!</Text>
+
+          <Button
+            style={styles.button}
+            title="Pick an image from camera roll"
+            onPress={this.pickImage}
           />
+          {image && (
+            <Image
+              source={{ uri: image }}
+              style={{
+                width: 200,
+                height: 200,
+                alignSelf: 'center',
+                paddingTop: 60,
+                paddingBottom: 60,
+              }}
+            />
+          )}
 
           <Picker
             selectedValue={this.state.occassion}
@@ -65,7 +114,6 @@ export default class Form extends React.Component {
             <Picker.Item label="Business" value="business" />
             <Picker.Item label="Night Out" value="nightOut" />
           </Picker>
-
           <Picker
             selectedValue={this.state.color}
             style={styles.formOptions}
@@ -84,7 +132,6 @@ export default class Form extends React.Component {
             <Picker.Item label="Black" value="black" />
             <Picker.Item label="Green" value="Green" />
           </Picker>
-
           <Picker
             selectedValue={this.state.season}
             style={styles.formOptions}
@@ -98,7 +145,6 @@ export default class Form extends React.Component {
             <Picker.Item label="Spring" value="spring" />
             <Picker.Item label="Summer" value="summer" />
           </Picker>
-
           <Picker
             selectedValue={this.state.category}
             style={styles.formOptions}
@@ -111,11 +157,13 @@ export default class Form extends React.Component {
             <Picker.Item label="Bottom" value="bottom" />
             <Picker.Item label="Full Body" value="fullBody" />
           </Picker>
-
+          <Text>{'\n'}</Text>
+          <Text>{'\n'}</Text>
+          <Text>{'\n'}</Text>
           <Button
             style={styles.button}
             title="Add to Closet"
-            onPress={this.clickButton}
+            onPress={this.addItem}
           />
         </View>
       </ScrollView>
@@ -128,11 +176,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'royalblue',
   },
-  developmentModeText: {
+  headerText: {
     marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
+    color: 'white',
+    fontSize: 25,
+    lineHeight: 30,
     textAlign: 'center',
   },
   contentContainer: {
@@ -240,6 +288,6 @@ const styles = StyleSheet.create({
   button: {
     paddingTop: 60,
     paddingBottom: 60,
-    color: '#00ffff',
+    color: 'white',
   },
 });
