@@ -13,10 +13,6 @@ import ClosetItems from '../components/ClosetItems';
 
 export default class AllProducts extends React.Component {
   render() {
-    let homepagePic = {
-      uri:
-        'https://img.ltwebstatic.com/images/pi/201707/7e/14997356783997490303_thumbnail_800x.webp',
-    };
     return (
       <View style={styles.container}>
         <ScrollView

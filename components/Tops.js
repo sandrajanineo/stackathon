@@ -10,14 +10,14 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { MonoText } from './StyledText';
-import { connect } from 'react-redux';
+import { tops } from '../store/closetInventory';
 
 export default class Tops extends React.Component {
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
-          {this.props.tops.map(top => {
+          {tops.map(top => {
             return (
               <View style={styles.welcomeContainer} key={top.id}>
                 <Image
@@ -33,10 +33,6 @@ export default class Tops extends React.Component {
     );
   }
 }
-
-const mapState = state => ({
-  tops: state.tops,
-});
 
 const styles = StyleSheet.create({
   container: {
@@ -126,8 +122,3 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
-
-// export default connect(
-//   mapState,
-//   null
-// )(Tops);

@@ -29,7 +29,6 @@ export default class Form extends React.Component {
   clickButton() {
     console.log('state is now ', this.state);
     console.log('button clicked!');
-    console.log('tops are', tops);
   }
 
   render() {
