@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { MonoText } from '../components/StyledText';
 import ClosetItems from '../components/ClosetItems';
+import firebase from 'firebase';
 
 export default class AllProducts extends React.Component {
   render() {

@@ -28,5 +28,13 @@
     "jest-expo": "^32.0.0",
     "schedule": "^0.4.0"
   },
-  "private": true
+  "private": true,
+  "config": {
+    "apiKey": "AIzaSyDkjVhWU4aDvBdGmjsZE9MYalrozFGUvTQ",
+    "authDomain": "personallyme2-a0c84.firebaseapp.com",
+    "databaseURL": "https://personallyme2-a0c84.firebaseio.com",
+    "projectId": "personallyme2-a0c84",
+    "storageBucket": "personallyme2-a0c84.appspot.com",
+    "messagingSenderId": "172818178714"
+  }
 }

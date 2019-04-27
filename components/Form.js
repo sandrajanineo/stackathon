@@ -13,12 +13,14 @@ import {
   Button,
 } from 'react-native';
 import { ImagePicker, Permissions } from 'expo';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 export default class Form extends React.Component {
   constructor() {
     super();
     this.state = {
-      imageUrl: null,
+      image: null,
       occassion: '',
       color: '',
       season: '',
@@ -30,8 +32,28 @@ export default class Form extends React.Component {
   addItem() {
     console.log('state is now ', this.state);
     console.log('button clicked!');
-    let newItem = this.state;
-    console.log('new item is ', newItem);
+    var db = firebase.firestore();
+    db.collection(`${this.state.category}`)
+      .add(this.state)
+      .then(function(docRef) {
+        console.log('doc ref is ', docRef.id);
+      });
+
+    // let newItem = firebase.database().ref(`${this.state.category}`);
+
+    // newItem
+    //   .push(this.state)
+    //   .then(() => {
+    //     console.log('successful!');
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+
+    // //retrieve list of items after adding a new item
+    // let items = newItem.on('value', function(snapshot) {
+    //   console.log('items: ', snapshot.val());
+    // });
   }
 
   showAlert() {
@@ -153,9 +175,9 @@ export default class Form extends React.Component {
             }}
           >
             <Picker.Item label="Select the item type:" value="" />
-            <Picker.Item label="Top" value="top" />
-            <Picker.Item label="Bottom" value="bottom" />
-            <Picker.Item label="Full Body" value="fullBody" />
+            <Picker.Item label="Top" value="tops" />
+            <Picker.Item label="Bottom" value="bottoms" />
+            <Picker.Item label="Full Body" value="fullbody" />
           </Picker>
           <Text>{'\n'}</Text>
           <Text>{'\n'}</Text>

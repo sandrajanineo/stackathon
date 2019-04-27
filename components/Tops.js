@@ -10,18 +10,47 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { MonoText } from './StyledText';
-import { tops } from './store/closetInventory';
+// import { tops } from './store/closetInventory';
+import firebase from 'firebase';
 
 export default class Tops extends React.Component {
+  constructor() {
+    super();
+    this.ref = firebase.database().ref('tops');
+    this.unsubscribe = null;
+    this.state = {
+      isLoading: true,
+      tops: [],
+    };
+  }
+
+  // getTops(querySnapShot) {
+  //   let tops = [];
+  //   querySnapShot.forEach(doc => {
+  //     let array = Object.values(doc.value());
+  //     tops.push(array);
+  //   });
+  //   this.setState({
+  //     isLoading: false,
+  //     tops,
+  //   });
+  // }
+
+  // componentDidMount() {
+  //   this.unsubscribe = this.ref.on('value', function(snapshot) {
+  //     this.getTops(snapshot);
+  //   });
+  // }
+
   render() {
     return (
       <ScrollView>
         <View style={styles.container}>
-          {tops.map(top => {
+          {this.state.tops.map(top => {
             return (
               <View style={styles.welcomeContainer} key={top.id}>
                 <Image
-                  source={{ uri: top.imageUrl }}
+                  source={{ uri: top.image }}
                   style={styles.welcomeImage}
                 />
                 <Text style={styles.getStartedText}>{top.occassion}</Text>

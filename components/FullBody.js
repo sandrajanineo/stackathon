@@ -11,7 +11,7 @@ import {
 import { WebBrowser } from 'expo';
 import { MonoText } from './StyledText';
 
-let fullBody = [
+let fullbody = [
   {
     id: 1,
     imageUrl: 'https://www.gap.com/webcontent/0013/463/897/cn13463897.jpg',
@@ -53,7 +53,7 @@ export default class FullBody extends React.Component {
   constructor() {
     super();
     this.state = {
-      items: fullBody,
+      items: fullbody,
     };
   }
 
