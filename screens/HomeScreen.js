@@ -15,10 +15,6 @@ import { MonoText } from '../components/StyledText';
 import { withOrientation } from 'react-navigation';
 
 export default class HomeScreen extends React.Component {
-  generate() {
-    //generates an outfit
-  }
-
   render() {
     let homepagePic = {
       uri:
@@ -47,7 +43,7 @@ export default class HomeScreen extends React.Component {
             <Button
               style={styles.button}
               title="Dress Me!"
-              onPress={this.generate}
+              onPress={() => this.props.navigation.navigate('OutfitGenerator')}
             />
           </View>
         </ScrollView>

@@ -13,9 +13,11 @@ import ProductsView from '../screens/ProductsView';
 import Tops from '../components/Tops';
 import Bottoms from '../components/Bottoms';
 import FullBody from '../components/FullBody';
+import OutfitGenerator from '../components/OutfitGenerator';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  OutfitGenerator: OutfitGenerator,
 });
 
 HomeStack.navigationOptions = {
