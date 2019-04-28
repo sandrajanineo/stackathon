@@ -12,12 +12,19 @@ import {
 
 export default class Outfit extends React.Component {
   render() {
-    let outfit = this.props.outfit[0];
+    let outfit = this.props.outfit;
     console.log('outfit is ', outfit);
     return (
       <View style={styles.container}>
-        <Text>You Reached the Outfit Page!</Text>
-        <Image source={{ uri: outfit.image }} style={styles.welcomeImage} />
+        <Text style={styles.developmentModeText}>WALAAAAAH!</Text>
+
+        {outfit.map((item, i) => {
+          return (
+            <View style={styles.welcomeContainer} key={i}>
+              <Image source={{ uri: item.image }} style={styles.welcomeImage} />
+            </View>
+          );
+        })}
       </View>
     );
   }
@@ -27,6 +34,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'royalblue',
+    alignSelf: 'center',
   },
   developmentModeText: {
     marginBottom: 20,

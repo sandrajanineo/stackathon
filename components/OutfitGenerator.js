@@ -68,14 +68,8 @@ export default class OutfitGenerator extends React.Component {
   }
 
   generateOutfit() {
-    // let tops = this.state.tops;
-    // let bottoms = this.state.bottoms;
-
     if (this.state.type === 'fullbody') {
       let fullbody = this.state.fullbody;
-      console.log('full body is ', fullbody);
-      console.log('this.state.season is ', this.state.season);
-      console.log('this.state.occassion is ', this.state.occasion);
       let selected = fullbody.filter(item => {
         if (
           item.season === this.state.season &&
@@ -84,13 +78,43 @@ export default class OutfitGenerator extends React.Component {
           return item;
         }
       });
-      console.log('selected item is!! ', selected);
+      this.setState({ selected: selected, showImage: true });
+    } else {
+      let tops = this.state.tops;
+      let bottoms = this.state.bottoms;
+      let selectedTops = tops.filter(item => {
+        if (
+          item.season === this.state.season &&
+          item.occassion === this.state.occasion
+        ) {
+          return item;
+        }
+      });
+      let selectedBottoms = bottoms.filter(item => {
+        if (
+          item.season === this.state.season &&
+          item.occassion === this.state.occasion
+        ) {
+          return item;
+        }
+      });
+
+      //generate random numbers based on lenght of the array
+      let randomTopNum = Math.floor(Math.random() * selectedTops.length);
+      let randomBottomNum = Math.floor(Math.random() * selectedBottoms.length);
+
+      let randomTop = selectedTops[randomTopNum];
+      console.log('random top is ', randomTop);
+      let randomBottom = selectedBottoms[randomBottomNum];
+      console.log('random bottom is ', randomBottom);
+
+      let selected = [randomTop].concat([randomBottom]);
       this.setState({ selected: selected, showImage: true });
     }
   }
 
   render() {
-    console.log('this.state is!! ', this.state);
+    // console.log('this.state is!! ', this.state);
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -153,7 +177,7 @@ export default class OutfitGenerator extends React.Component {
           {this.state.showImage ? (
             <Outfit outfit={this.state.selected} />
           ) : (
-            <Text>Nothing Yet...</Text>
+            <Text style={styles.developmentModeText}>Nothing Yet...</Text>
           )}
         </View>
       </ScrollView>
