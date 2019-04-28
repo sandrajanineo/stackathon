@@ -7,55 +7,18 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from 'react-native';
 
-import * as firebase from 'firebase';
-import 'firebase/firestore';
-
-export default class Tops extends React.Component {
-  constructor() {
-    super();
-    this.ref = firebase.firestore().collection('tops');
-    this.unsubscribe = null;
-    this.state = {
-      isLoading: true,
-      tops: [],
-    };
-    this.getTops = this.getTops.bind(this);
-  }
-
-  getTops(querySnapShot) {
-    let tops = [];
-    querySnapShot.forEach(doc => {
-      tops.push(doc.data());
-    });
-    this.setState({
-      isLoading: false,
-      tops,
-    });
-  }
-
-  componentDidMount() {
-    this.unsubscribe = this.ref.onSnapshot(this.getTops);
-    this.unsubscribe = null;
-  }
-
+export default class Outfit extends React.Component {
   render() {
+    let outfit = this.props.outfit[0];
+    console.log('outfit is ', outfit);
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          {this.state.tops.map((top, i) => {
-            return (
-              <View style={styles.welcomeContainer} key={i}>
-                <Image
-                  source={{ uri: top.image }}
-                  style={styles.welcomeImage}
-                />
-              </View>
-            );
-          })}
-        </View>
-      </ScrollView>
+      <View style={styles.container}>
+        <Text>You Reached the Outfit Page!</Text>
+        <Image source={{ uri: outfit.image }} style={styles.welcomeImage} />
+      </View>
     );
   }
 }
@@ -146,5 +109,12 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
+  },
+  button: {
+    fontSize: 25,
+    color: 'white',
+    lineHeight: 24,
+    textAlign: 'center',
+    borderColor: 'white',
   },
 });

@@ -6,12 +6,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Picker,
+  Button,
   View,
 } from 'react-native';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-
-let tops = [];
+import Outfit from './Outfit';
 
 export default class OutfitGenerator extends React.Component {
   constructor() {
@@ -24,10 +25,16 @@ export default class OutfitGenerator extends React.Component {
       tops: [],
       bottoms: [],
       fullbody: [],
+      type: '',
+      occasion: '',
+      season: '',
+      selected: [],
+      showImage: false,
     };
     this.getTops = this.getTops.bind(this);
     this.getBottoms = this.getBottoms.bind(this);
     this.getFullbody = this.getFullbody.bind(this);
+    this.generateOutfit = this.generateOutfit.bind(this);
   }
 
   getTops(querySnapShot) {
@@ -60,14 +67,96 @@ export default class OutfitGenerator extends React.Component {
     this.refFullbody.onSnapshot(this.getFullbody);
   }
 
+  generateOutfit() {
+    // let tops = this.state.tops;
+    // let bottoms = this.state.bottoms;
+
+    if (this.state.type === 'fullbody') {
+      let fullbody = this.state.fullbody;
+      console.log('full body is ', fullbody);
+      console.log('this.state.season is ', this.state.season);
+      console.log('this.state.occassion is ', this.state.occasion);
+      let selected = fullbody.filter(item => {
+        if (
+          item.season === this.state.season &&
+          item.occassion === this.state.occasion
+        ) {
+          return item;
+        }
+      });
+      console.log('selected item is!! ', selected);
+      this.setState({ selected: selected, showImage: true });
+    }
+  }
+
   render() {
-    console.log('this.state!!!! ', this.state);
+    console.log('this.state is!! ', this.state);
     return (
-      <View style={styles.container}>
-        <Text style={styles.getStartedText}>
-          You Reached the OutfitGenerator!
-        </Text>
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.getStartedText}>
+            You Reached the OutfitGenerator!
+          </Text>
+
+          <Picker
+            selectedValue={this.state.type}
+            style={styles.formOptions}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ type: itemValue });
+            }}
+          >
+            <Picker.Item label="Select the type of outfit:" value="" />
+            <Picker.Item label="One Piece" value="fullbody" />
+            <Picker.Item label="Two Piece" value="topNbottom" />
+          </Picker>
+
+          <Picker
+            selectedValue={this.state.occasion}
+            style={styles.formOptions}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ occasion: itemValue });
+            }}
+          >
+            <Picker.Item label="Select the type of occasion:" value="" />
+
+            <Picker.Item label="Business" value="business" />
+            <Picker.Item label="Casual" value="casual" />
+            <Picker.Item label="Formal" value="formal" />
+            <Picker.Item label="Night Out" value="nightOut" />
+            <Picker.Item label="Sporty" value="sporty" />
+          </Picker>
+
+          <Picker
+            selectedValue={this.state.season}
+            style={styles.formOptions}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ season: itemValue });
+            }}
+          >
+            <Picker.Item label="Select the season:" value="" />
+            <Picker.Item label="Winter" value="winter" />
+            <Picker.Item label="Spring" value="spring" />
+            <Picker.Item label="Summer" value="summer" />
+            <Picker.Item label="Fall" value="fall" />
+          </Picker>
+
+          <Text>{'\n'}</Text>
+          <Text>{'\n'}</Text>
+          <Text>{'\n'}</Text>
+
+          <Button
+            style={styles.button}
+            title="Dress Me!"
+            onPress={this.generateOutfit}
+          />
+
+          {this.state.showImage ? (
+            <Outfit outfit={this.state.selected} />
+          ) : (
+            <Text>Nothing Yet...</Text>
+          )}
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -119,6 +208,7 @@ const styles = StyleSheet.create({
     color: 'white',
     lineHeight: 24,
     textAlign: 'center',
+    marginTop: 25,
   },
   tabBarInfoContainer: {
     position: 'absolute',
@@ -158,5 +248,22 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
+  },
+  formOptions: {
+    height: 200,
+    width: '70%',
+    paddingTop: 60,
+    paddingBottom: 60,
+    alignSelf: 'center',
+  },
+  form: {
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
+  },
+  button: {
+    paddingTop: 60,
+    paddingBottom: 60,
+    color: 'white',
   },
 });

@@ -36,6 +36,7 @@ export default class Bottoms extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.getBottoms);
+    this.unsubscribe = null;
   }
 
   render() {
@@ -49,7 +50,6 @@ export default class Bottoms extends React.Component {
                   source={{ uri: bottom.image }}
                   style={styles.welcomeImage}
                 />
-                <Text style={styles.getStartedText}>{bottom.occassion}</Text>
               </View>
             );
           })}

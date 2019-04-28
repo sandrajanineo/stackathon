@@ -36,6 +36,7 @@ export default class FullBody extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.getFullbody);
+    this.unsubscribe = null;
   }
 
   render() {
@@ -49,7 +50,6 @@ export default class FullBody extends React.Component {
                   source={{ uri: item.image }}
                   style={styles.welcomeImage}
                 />
-                <Text style={styles.getStartedText}>{item.occassion}</Text>
               </View>
             );
           })}

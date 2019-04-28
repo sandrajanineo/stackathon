@@ -23,7 +23,7 @@ export default class ClosetItems extends React.Component {
             <Image
               source={{
                 uri:
-                  'https://www.gap.com/webcontent/0013/463/897/cn13463897.jpg',
+                  'https://images.express.com/is/image/expressfashion/0097_08634710_0046_f033?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon',
               }}
               style={styles.welcomeImage}
             />
@@ -51,7 +51,7 @@ export default class ClosetItems extends React.Component {
             <Image
               source={{
                 uri:
-                  'https://www.lulus.com/images/product/xlarge/3058440_481502.jpg?w=560',
+                  'https://images.express.com/is/image/expressfashion/0094_07822564_1412_f029?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon',
               }}
               style={styles.welcomeImage}
             />

@@ -7,8 +7,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  TextInput,
-  Keyboard,
   Picker,
   Button,
   Alert,
@@ -123,12 +121,12 @@ export default class Form extends React.Component {
               this.setState({ occassion: itemValue });
             }}
           >
-            <Picker.Item label="Select the type of occassion:" value="" />
-            <Picker.Item label="Formal" value="formal" />
-            <Picker.Item label="Casual" value="casual" />
-            <Picker.Item label="Sporty" value="sporty" />
+            <Picker.Item label="Select the type of occasion:" value="" />
             <Picker.Item label="Business" value="business" />
+            <Picker.Item label="Casual" value="casual" />
+            <Picker.Item label="Formal" value="formal" />
             <Picker.Item label="Night Out" value="nightOut" />
+            <Picker.Item label="Sporty" value="sporty" />
           </Picker>
           <Picker
             selectedValue={this.state.color}
@@ -156,10 +154,10 @@ export default class Form extends React.Component {
             }}
           >
             <Picker.Item label="Select the season:" value="" />
-            <Picker.Item label="Fall" value="fall" />
             <Picker.Item label="Winter" value="winter" />
             <Picker.Item label="Spring" value="spring" />
             <Picker.Item label="Summer" value="summer" />
+            <Picker.Item label="Fall" value="fall" />
           </Picker>
           <Picker
             selectedValue={this.state.category}
