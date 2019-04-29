@@ -30,7 +30,7 @@ export default class AllProducts extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'royalblue',
+    backgroundColor: '#48D1CC',
   },
   contentContainer: {
     paddingTop: 30,

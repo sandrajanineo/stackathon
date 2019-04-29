@@ -31,9 +31,6 @@ export default class HomeScreen extends React.Component {
               }}
               style={styles.welcomeImage}
             />
-          </View>
-
-          <View style={styles.getStartedContainer}>
             <Text style={styles.text}>
               Tell me what you need and I will build an outfit for you!
             </Text>
@@ -64,24 +61,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 20,
+    alignItems: 'center',
+    marginHorizontal: 50,
   },
   welcomeImage: {
     width: 350,
     height: 350,
     resizeMode: 'contain',
     marginLeft: -10,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
   },
   welcomeText: {
     fontSize: 30,
