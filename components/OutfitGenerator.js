@@ -99,14 +99,27 @@ export default class OutfitGenerator extends React.Component {
         }
       });
 
-      //generate random numbers based on lenght of the array
-      let randomTopNum = Math.floor(Math.random() * selectedTops.length);
-      let randomBottomNum = Math.floor(Math.random() * selectedBottoms.length);
+      let randomTop = [];
+      let randomBottom = [];
 
-      let randomTop = selectedTops[randomTopNum];
-      console.log('random top is ', randomTop);
-      let randomBottom = selectedBottoms[randomBottomNum];
-      console.log('random bottom is ', randomBottom);
+      //generate random numbers based on lenght of the array
+      if (selectedTops) {
+        let randomTopNum = Math.floor(Math.random() * selectedTops.length);
+        randomTop = selectedTops[randomTopNum];
+        console.log('random top is ', randomTop);
+      } else {
+        selectedTops = null;
+      }
+
+      if (selectedBottoms) {
+        let randomBottomNum = Math.floor(
+          Math.random() * selectedBottoms.length
+        );
+        randomBottom = selectedBottoms[randomBottomNum];
+        console.log('random bottom is ', randomBottom);
+      } else {
+        selectedBottoms = null;
+      }
 
       let selected = [randomTop].concat([randomBottom]);
       this.setState({ selected: selected, showImage: true });
