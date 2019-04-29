@@ -116,12 +116,8 @@ export default class OutfitGenerator extends React.Component {
   render() {
     // console.log('this.state is!! ', this.state);
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          <Text style={styles.getStartedText}>
-            You Reached the OutfitGenerator!
-          </Text>
-
+      <ScrollView style={styles.container}>
+        <View style={styles.formContainer}>
           <Picker
             selectedValue={this.state.type}
             style={styles.formOptions}
@@ -165,19 +161,15 @@ export default class OutfitGenerator extends React.Component {
           </Picker>
 
           <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
 
-          <Button
-            style={styles.button}
-            title="Dress Me!"
-            onPress={this.generateOutfit}
-          />
+          <TouchableOpacity style={styles.button} onPress={this.generateOutfit}>
+            <Text style={styles.buttonText}>Dress Me!</Text>
+          </TouchableOpacity>
 
           {this.state.showImage ? (
             <Outfit outfit={this.state.selected} />
           ) : (
-            <Text style={styles.developmentModeText}>Nothing Yet...</Text>
+            <Text style={styles.text}>Nothing Yet...</Text>
           )}
         </View>
       </ScrollView>
@@ -188,96 +180,34 @@ export default class OutfitGenerator extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'royalblue',
+    backgroundColor: '#48D1CC',
+    paddingTop: 15,
   },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  welcomeContainer: {
+  formContainer: {
     alignItems: 'center',
     marginTop: 10,
+    paddingBottom: 10,
+    paddingTop: 10,
     marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 300,
-    height: 300,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
+    borderWidth: 2,
+    borderColor: 'white',
   },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 25,
+  headerText: {
+    marginBottom: 30,
     color: 'white',
-    lineHeight: 24,
+    fontSize: 25,
+    lineHeight: 30,
     textAlign: 'center',
-    marginTop: 25,
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
   },
   formOptions: {
     height: 200,
-    width: '70%',
-    paddingTop: 60,
-    paddingBottom: 60,
+    width: '95%',
+    paddingTop: 5,
+    paddingBottom: 10,
+    marginTop: 5,
+    marginBottom: 10,
     alignSelf: 'center',
   },
   form: {
@@ -286,8 +216,19 @@ const styles = StyleSheet.create({
     borderColor: '#FFFFFF',
   },
   button: {
-    paddingTop: 60,
-    paddingBottom: 60,
+    color: '#0000CD',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    borderWidth: 10,
+    marginBottom: 20,
+  },
+  buttonText: {
+    fontSize: 20,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  text: {
+    fontSize: 10,
     color: 'white',
   },
 });

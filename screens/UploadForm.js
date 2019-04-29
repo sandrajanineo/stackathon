@@ -6,7 +6,7 @@ export default class LinksScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Form />
+        <Form navigate={this.props.navigation.navigate} />
       </ScrollView>
     );
   }

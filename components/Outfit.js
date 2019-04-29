@@ -33,7 +33,7 @@ export default class Outfit extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'royalblue',
+    backgroundColor: '#48D1CC',
     alignSelf: 'center',
   },
   developmentModeText: {

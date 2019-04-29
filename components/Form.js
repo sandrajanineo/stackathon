@@ -47,6 +47,10 @@ export default class Form extends React.Component {
     });
 
     Alert.alert('Item Added Successfully!');
+    // let category =
+    //   this.state.category[0].toUpperCase() + this.state.category.slice(1);
+    // console.log('category is ', category);
+    // // this.props.navigate(`${this.state.category}`);
   }
 
   showAlert() {
