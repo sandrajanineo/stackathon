@@ -87,5 +87,5 @@ export default createBottomTabNavigator({
   HomeStack,
   ProductsViewStack,
   UploadFormStack,
-  SettingsStack,
+  // SettingsStack,
 });

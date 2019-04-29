@@ -7,7 +7,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -16,35 +15,36 @@ import { withOrientation } from 'react-navigation';
 
 export default class HomeScreen extends React.Component {
   render() {
-    let homepagePic = {
-      uri:
-        'https://img.ltwebstatic.com/images/pi/201707/7e/14997356783997490303_thumbnail_800x.webp',
-    };
     return (
       <View style={styles.container}>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
+          <Text style={styles.welcomeText}>Welcome to PersonallyMe!</Text>
+
           <View style={styles.welcomeContainer}>
-            <Image source={homepagePic} style={styles.welcomeImage} />
+            <Image
+              source={{
+                uri:
+                  'http://wardrobeadvice.com/wp-content/uploads/2009/11/Fashion-stylist.jpg',
+              }}
+              style={styles.welcomeImage}
+            />
           </View>
 
           <View style={styles.getStartedContainer}>
-            {/* {this._maybeRenderDevelopmentModeWarning()} */}
-
-            <Text style={styles.getStartedText}>Welcome to PersonallyMe!</Text>
-
-            <Text style={styles.getStartedText}>
+            <Text style={styles.text}>
               Tell me what you need and I will build an outfit for you!
             </Text>
 
             <Text>{'\n'}</Text>
-            <Button
+            <TouchableOpacity
               style={styles.button}
-              title="Dress Me!"
               onPress={() => this.props.navigation.navigate('OutfitGenerator')}
-            />
+            >
+              <Text style={styles.buttonText}>Dress Me!</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
@@ -55,14 +55,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'royalblue',
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: 'center',
+    backgroundColor: '#48D1CC',
   },
   contentContainer: {
     paddingTop: 30,
@@ -73,18 +66,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   welcomeImage: {
-    width: 300,
-    height: 300,
+    width: 350,
+    height: 350,
     resizeMode: 'contain',
-    marginTop: 3,
     marginLeft: -10,
   },
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
   },
   codeHighlightText: {
     color: 'rgba(96,100,109, 0.8)',
@@ -94,56 +83,29 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     paddingHorizontal: 4,
   },
-  getStartedText: {
+  welcomeText: {
+    fontSize: 30,
+    color: 'white',
+    lineHeight: 35,
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  text: {
     fontSize: 25,
     color: 'white',
-    lineHeight: 24,
+    lineHeight: 30,
     textAlign: 'center',
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
   },
   button: {
-    fontSize: 25,
-    color: 'white',
-    lineHeight: 24,
-    textAlign: 'center',
+    color: '#0000CD',
+    backgroundColor: 'white',
+
     borderColor: 'white',
+    borderWidth: 10,
+  },
+  buttonText: {
+    fontSize: 20,
+    lineHeight: 20,
+    textAlign: 'center',
   },
 });
