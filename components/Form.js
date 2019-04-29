@@ -89,29 +89,16 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <View style={styles.formContainer}>
           <Text style={styles.headerText}>Add To Your Collection!</Text>
 
           <Button
-            style={styles.button}
             title="Pick an image from camera roll"
             onPress={this.pickImage}
           />
           {this.state.image && (
-            <Image
-              source={{ uri: this.state.image }}
-              style={{
-                width: 200,
-                height: 200,
-                alignSelf: 'center',
-                paddingTop: 60,
-                paddingBottom: 60,
-              }}
-            />
+            <Image source={{ uri: this.state.image }} style={styles.image} />
           )}
 
           <Picker
@@ -121,7 +108,7 @@ export default class Form extends React.Component {
               this.setState({ occassion: itemValue });
             }}
           >
-            <Picker.Item label="Select the type of occasion:" value="" />
+            <Picker.Item label="Select the occasion:" value="" />
             <Picker.Item label="Business" value="business" />
             <Picker.Item label="Casual" value="casual" />
             <Picker.Item label="Formal" value="formal" />
@@ -171,14 +158,13 @@ export default class Form extends React.Component {
             <Picker.Item label="Bottom" value="bottoms" />
             <Picker.Item label="Full Body" value="fullbody" />
           </Picker>
+
           <Text>{'\n'}</Text>
           <Text>{'\n'}</Text>
-          <Text>{'\n'}</Text>
-          <Button
-            style={styles.button}
-            title="Add to Closet"
-            onPress={this.addItem}
-          />
+
+          <TouchableOpacity style={styles.button} onPress={this.addItem}>
+            <Text style={styles.buttonText}>Add to Closet</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );
@@ -188,120 +174,52 @@ export default class Form extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'royalblue',
+    backgroundColor: '#48D1CC',
+    paddingTop: 15,
   },
   headerText: {
-    marginBottom: 20,
+    marginBottom: 30,
     color: 'white',
     fontSize: 25,
     lineHeight: 30,
     textAlign: 'center',
   },
-  contentContainer: {
-    paddingTop: 30,
-    paddingBottom: 30,
-  },
-  welcomeContainer: {
+  formContainer: {
     alignItems: 'center',
     marginTop: 10,
+    paddingBottom: 10,
+    paddingTop: 10,
     marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 300,
-    height: 300,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
-  getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  formText: {
-    fontSize: 15,
-    color: 'white',
+    borderWidth: 2,
     borderColor: 'white',
-    lineHeight: 24,
-    textAlign: 'center',
-    paddingBottom: 10,
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
-  },
-  navigationFilename: {
-    marginTop: 5,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
-  inputContainer: {
-    paddingTop: 15,
-  },
-  textInput: {
-    borderColor: '#CCCCCC',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    height: 50,
-    fontSize: 25,
-    paddingLeft: 20,
-    paddingRight: 20,
   },
   formOptions: {
     height: 200,
-    width: '70%',
-    paddingTop: 60,
-    paddingBottom: 60,
+    width: '95%',
+    paddingTop: 10,
+    marginBottom: 10,
+    marginTop: 10,
+    paddingBottom: 50,
     alignSelf: 'center',
-  },
-  form: {
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderColor: '#FFFFFF',
   },
   button: {
+    color: '#0000CD',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    borderWidth: 10,
+  },
+  buttonText: {
+    fontSize: 20,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    alignSelf: 'center',
     paddingTop: 60,
     paddingBottom: 60,
-    color: 'white',
   },
 });
