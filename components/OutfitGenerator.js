@@ -78,7 +78,9 @@ export default class OutfitGenerator extends React.Component {
           return item;
         }
       });
-      this.setState({ selected: selected, showImage: true });
+      let randomFullbodyNum = Math.floor(Math.random() * selected.length);
+      let randomFullbody = selected[randomFullbodyNum];
+      this.setState({ selected: randomFullbody, showImage: true });
     } else {
       let tops = this.state.tops;
       let bottoms = this.state.bottoms;
@@ -108,7 +110,7 @@ export default class OutfitGenerator extends React.Component {
         randomTop = selectedTops[randomTopNum];
         console.log('random top is ', randomTop);
       } else {
-        selectedTops = null;
+        randomTop = null;
       }
 
       if (selectedBottoms) {
@@ -118,11 +120,16 @@ export default class OutfitGenerator extends React.Component {
         randomBottom = selectedBottoms[randomBottomNum];
         console.log('random bottom is ', randomBottom);
       } else {
-        selectedBottoms = null;
+        randomBottom = null;
       }
 
-      let selected = [randomTop].concat([randomBottom]);
-      this.setState({ selected: selected, showImage: true });
+      if (randomTop !== null || randomBottom !== null) {
+        let selected = [randomTop].concat([randomBottom]);
+        this.setState({
+          selected: selected,
+          showImage: true,
+        });
+      }
     }
   }
 

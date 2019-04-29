@@ -4,5 +4,6 @@ npm-debug.*
 *.jks
 *.p12
 *.key
+*dbConfig.js
 *.mobileprovision
-package.json
+*package.json

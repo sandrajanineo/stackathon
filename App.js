@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+import { config } from './dbConfig';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -12,31 +13,9 @@ export default class App extends React.Component {
   };
 
   componentWillMount() {
-    const config = {
-      apiKey: 'AIzaSyDkjVhWU4aDvBdGmjsZE9MYalrozFGUvTQ',
-      authDomain: 'personallyme2-a0c84.firebaseapp.com',
-      databaseURL: 'https://personallyme2-a0c84.firebaseio.com',
-      projectId: 'personallyme2-a0c84',
-      storageBucket: 'personallyme2-a0c84.appspot.com',
-      messagingSenderId: '172818178714',
-    };
     firebase.initializeApp(config);
 
     const db = firebase.firestore();
-
-    // firebase
-    //   .database()
-    //   .ref('users/001')
-    //   .set({
-    //     name: 'Sandra',
-    //     age: 29,
-    //   })
-    //   .then(() => {
-    //     console.log('successful!');
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
   }
 
   render() {
