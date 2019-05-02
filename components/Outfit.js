@@ -24,19 +24,23 @@ export default class Outfit extends React.Component {
     }
     return (
       <View style={styles.container}>
-        {outfit.map((item, i) => {
-          return item ? (
-            <View style={styles.welcomeContainer} key={i}>
-              <Image source={{ uri: item.image }} style={styles.welcomeImage} />
-            </View>
-          ) : (
-            <Text style={styles.text} key={i}>
-              WAAAHHHH :( only one item in your collection matched that
-              criteria...add more items or browse your collection via the "Your
-              Closet" tab!
-            </Text>
-          );
-        })}
+        <View style={styles.welcomeContainer}>
+          {outfit.map((item, i) => {
+            return item ? (
+              <Image
+                source={{ uri: item.image }}
+                style={styles.welcomeImage}
+                key={i}
+              />
+            ) : (
+              <Text style={styles.text} key={i}>
+                WAAAHHHH :( only one item in your collection matched that
+                criteria...add more items or browse your collection via the
+                "Your Closet" tab!
+              </Text>
+            );
+          })}
+        </View>
       </View>
     );
   }

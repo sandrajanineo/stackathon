@@ -6,4 +6,3 @@ npm-debug.*
 *.key
 *dbConfig.js
 *.mobileprovision
-*package.json

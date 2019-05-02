@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
-import { config } from './dbConfig';
+import config from './dbConfig';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
