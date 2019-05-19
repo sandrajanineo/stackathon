@@ -1,8 +1,8 @@
-# stackathon project - PersonallyMe
+# PersonallyMe (stackathon project)
 
 ### **Description:**
 
-A mobile application, built with React-Native, which serves as a virtual closet and personal stylist. Cloud Firestore supports the ability for the virtual closet and outfit suggestions to persist across sessions.
+A mobile application, built with React-Native, which serves as a virtual closet and personal stylist. Cloud Firestore supports the ability for the virtual closet and outfit suggestions to persist across sessions. This application was built within a 2-day timespan and continues to be expanded on!
 
 
 ### **Get Started:**
