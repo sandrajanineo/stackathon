@@ -11,7 +11,7 @@ Please refer to the Expo Documentation in order to view the application in actio
 
 Refer to the React-Native documentation in order to learn more about the framework used to bring this mobile application to fruition - https://facebook.github.io/react-native/.
 
-Refer to the Cloud Firestore documentation in order to learn more about how the data persists throughout sessions - https://firebase.google.com/docs/firestore.
+Refer to the Cloud Firestore documentation in order to learn more about how the data persists across sessions - https://firebase.google.com/docs/firestore.
 
 
 ### Views:
